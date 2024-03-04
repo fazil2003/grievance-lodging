@@ -45,7 +45,7 @@ const AddGrievanceForm = () => {
       <br />
       <p className="heading-medium" style={{ textAlign: "left" }}>Add Grievance</p>
       <br />
-      <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '50% 50%', gap: '10px' }}>
+      <form onSubmit={handleSubmit} >
         <TextField
           label="Title"
           variant="outlined"
@@ -68,6 +68,7 @@ const AddGrievanceForm = () => {
           required
         />
     
+        <br /><br />
         <Button type="submit" variant="contained" color="primary" fullWidth id="react-button">
           Submit
         </Button>

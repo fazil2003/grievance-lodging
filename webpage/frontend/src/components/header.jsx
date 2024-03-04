@@ -6,9 +6,7 @@ import { FaSignOutAlt, FaQuestionCircle } from 'react-icons/fa';
 const Header = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("id");
-        localStorage.removeItem("username");
-        localStorage.removeItem("token");
+        localStorage.removeItem("userid");
         navigate("/login");
     };
 

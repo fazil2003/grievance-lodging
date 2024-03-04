@@ -56,11 +56,7 @@ def addGrievance():
     grievanceTitle = request_data['grievance_title']
     grievanceDescription = request_data['grievance_description']
     grievancePerson = request_data['grievance_person']
-    # %d, %s, %f
-    # sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ")"
-    # print(sql)
-    # cursor.execute(sql)
-    # db.commit()
+
     keywords = generateKeywords(grievanceDescription)
 
     print("KEYWORDS")
@@ -81,6 +77,13 @@ def addGrievance():
         else:
             resultDepartments = resultDepartments + ", " + government_departments_map[listIndex] 
         index += 1
+
+    grievanceDepartments = resultIndex
+    # %d, %s, %f
+    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + grievanceDepartments + "')"
+    # print(sql)
+    cursor.execute(sql)
+    db.commit()
     # print(result)
     return resultDepartments
 
@@ -142,16 +145,17 @@ def getGrievances():
         grievanceTitle = grievance[1]
         grievanceDescription = grievance[2]
         grievancePerson = grievance[3]
-        grievanceDepartment = grievance[4]
-        grievanceDate = grievance[5]
-        grievanceStatus = grievance[6]
+        grievanceDepartment = grievance[4] # This contains ID
+        grievanceDepartmentText = grievance[5] # This contains full text
+        grievanceDate = grievance[6]
+        grievanceStatus = grievance[7]
 
         obj = {
             'grievanceID': grievanceID,
             'grievanceTitle': grievanceTitle,
             'grievanceDescription': grievanceDescription,
             'grievancePerson': grievancePerson,
-            'grievanceDepartment': grievanceDepartment,
+            'grievanceDepartment': grievanceDepartmentText,
             'grievanceDate': grievanceDate,
             'grievanceStatus': grievanceStatus
         }

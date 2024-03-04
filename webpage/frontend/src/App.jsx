@@ -6,7 +6,7 @@ import Home from './components/home.component'
 
 function App() {
   const [count, setCount] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("username"));
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("userid"));
 
   return (
 		<Router>

@@ -1,0 +1,25 @@
+.grid-options-div {
+    width: calc(100% - 20px);
+    height: 60px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.grid-options-div .button-top {
+    height: 40px;
+    margin: 10px 5px 10px 5px;
+    font-size: 14px;
+    background: #1C4E80;
+    color: white;
+    border-radius: 7.5px;
+    border: 2px solid #1C4E80;
+    font-weight: 600;
+}
+
+.grid-options-div .button-top:hover {
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}

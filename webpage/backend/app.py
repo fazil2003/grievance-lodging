@@ -51,9 +51,10 @@ def addGrievance():
     # db.commit()
     keywords = generateKeywords(grievanceDescription)
 
+    print("KEYWORDS")
+    print(keywords)
     import generate_accuracies as ga
-    ga.get_accuracies_levenshtein(keywords)
-    ga.get_accuracies_spacy(keywords)
+    ga.get_overall_accuracies(keywords)
     return "data inserted successfully"
 
 def generateKeywords(sentence):

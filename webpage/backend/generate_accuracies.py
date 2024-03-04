@@ -1,12 +1,28 @@
 import keywords_departments_file as kdf
 departments = kdf.get_department_keywords()
 
-# For Multiple Departments
+# Levenshtein
 from Levenshtein import ratio
 
 # SpaCy
 import spacy
 nlp = spacy.load("en_core_web_lg")
+
+def get_overall_accuracies(keywords):
+    overallAccuracyList = []
+    accuraciesLevenshtein = get_accuracies_levenshtein(keywords)
+    accuraciesSpacy = get_accuracies_spacy(keywords)
+
+    for index in range(len(accuraciesLevenshtein)):
+        overallAccuracy = (accuraciesLevenshtein[index][1] + accuraciesSpacy[index][1]) / 2
+        overallAccuracyList.append([index + 1, overallAccuracy])
+    
+    # print("ACCURACIES")
+    # print(accuraciesLevenshtein)
+    # print(accuraciesSpacy)
+    print("OVERALL")
+    overallAccuracyList.sort(key = lambda x: x[1], reverse = True)
+    print(overallAccuracyList)
 
 def get_accuracies_levenshtein(keywords):
     relevance = []
@@ -21,8 +37,8 @@ def get_accuracies_levenshtein(keywords):
         relevance.sort(reverse = True)
         final_accuracies.append([departmentID, relevance[0]])
         departmentID += 1
-    final_accuracies.sort(key = lambda x: x[1], reverse = True)
-    print(final_accuracies)
+    # final_accuracies.sort(key = lambda x: x[1], reverse = True)
+    return final_accuracies
 
 def get_accuracies_spacy(keywords):
     
@@ -43,8 +59,8 @@ def get_accuracies_spacy(keywords):
         # print(relevance)
         final_accuracies.append([departmentID, relevance[0]])
         departmentID += 1
-    final_accuracies.sort(key = lambda x: x[1], reverse = True)
-    print(final_accuracies)
+    # final_accuracies.sort(key = lambda x: x[1], reverse = True)
+    return final_accuracies
 
 # print("Levenshtein")
 # get_accuracies_levenshtein(keywords)

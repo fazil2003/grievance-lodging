@@ -54,8 +54,15 @@ def addGrievance():
     print("KEYWORDS")
     print(keywords)
     import generate_accuracies as ga
-    ga.get_overall_accuracies(keywords)
-    return "data inserted successfully"
+    # Get the top 3 values.
+    accuracies = ga.get_overall_accuracies(keywords)[:3]
+    result = ""
+    # Add the index to result values
+    for index, score in accuracies:
+        result = result + str(index) + " "
+
+    # print(result)
+    return result
 
 def generateKeywords(sentence):
 

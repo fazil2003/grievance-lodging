@@ -20,9 +20,9 @@ def get_overall_accuracies(keywords):
     # print("ACCURACIES")
     # print(accuraciesLevenshtein)
     # print(accuraciesSpacy)
-    print("OVERALL")
+    # print("OVERALL")
     overallAccuracyList.sort(key = lambda x: x[1], reverse = True)
-    print(overallAccuracyList)
+    return overallAccuracyList
 
 def get_accuracies_levenshtein(keywords):
     relevance = []

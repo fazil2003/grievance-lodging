@@ -25,7 +25,7 @@ const AddGrievanceForm = () => {
         };
 
         axios.post(defaultVariables['backend-url'] + "grievance/add", grievance).then((res) => {
-            setSuccessMessage("Grievance lodged successfully");
+            setSuccessMessage(res.data);
             setTimeout(() => {
                 setSuccessMessage(null);
             },3000)

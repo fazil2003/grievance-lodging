@@ -29,7 +29,6 @@ def get_accuracies_spacy(keywords):
     # For Multiple Departments
     relevance = []
     # Levenshtein
-    keywords = ["the employees are punished severly"]
     final_accuracies = []
     departmentID = 1
     for each_department in departments:
@@ -47,8 +46,7 @@ def get_accuracies_spacy(keywords):
     final_accuracies.sort(key = lambda x: x[1], reverse = True)
     print(final_accuracies)
 
-keywords = ['minor driving', 'crimes', 'future']
-print("Levenshtein")
-get_accuracies_levenshtein(keywords)
-print("Spacy")
-get_accuracies_spacy(keywords)
+# print("Levenshtein")
+# get_accuracies_levenshtein(keywords)
+# print("Spacy")
+# get_accuracies_spacy(keywords)

@@ -49,7 +49,11 @@ def addGrievance():
     # print(sql)
     # cursor.execute(sql)
     # db.commit()
-    generateKeywords(grievanceDescription)
+    keywords = generateKeywords(grievanceDescription)
+
+    import generate_accuracies as ga
+    ga.get_accuracies_levenshtein(keywords)
+    ga.get_accuracies_spacy(keywords)
     return "data inserted successfully"
 
 def generateKeywords(sentence):
@@ -93,7 +97,7 @@ Use the following format separated by commas:
     ]
     keywords = kw_model.extract_keywords(documents, check_vocab=True)
 
-    print(keywords[0])
+    return keywords[0]
 
 @app.route('/grievance/get', methods = ['GET']) 
 @cross_origin(supports_credentials=True)

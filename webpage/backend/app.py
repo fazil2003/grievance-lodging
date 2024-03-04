@@ -16,6 +16,18 @@ CORS(app, support_credentials=True)
 db = MySQLdb.connect("localhost", "root", "", "lodging_grievance")
 cursor = db.cursor()
 
+government_departments_map = {
+    1: "Police department",
+    2: "Transportation department",
+    3: "Education department",
+    4: "Health department",
+    5: "Social services department",
+    6: "Environmental protection department",
+    7: "Housing and urban development department",
+    8: "Labor welfare department",
+    9: "Agriculture development department"
+}
+
 @app.route("/")
 @cross_origin(supports_credentials=True)
 def home():
@@ -56,13 +68,21 @@ def addGrievance():
     import generate_accuracies as ga
     # Get the top 3 values.
     accuracies = ga.get_overall_accuracies(keywords)[:3]
-    result = ""
+    resultIndex = ""
+    resultDepartments = ""
     # Add the index to result values
-    for index, score in accuracies:
-        result = result + str(index) + " "
-
+    if(len(accuracies) > 0):
+        resultDepartments = "Grievance successfully lodged to "
+    index = 0
+    for listIndex, score in accuracies:
+        resultIndex = resultIndex + str(listIndex) + " "
+        if (index == 0):
+            resultDepartments = resultDepartments + government_departments_map[listIndex] 
+        else:
+            resultDepartments = resultDepartments + ", " + government_departments_map[listIndex] 
+        index += 1
     # print(result)
-    return result
+    return resultDepartments
 
 def generateKeywords(sentence):
 

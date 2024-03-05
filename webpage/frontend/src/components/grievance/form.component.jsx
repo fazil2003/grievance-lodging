@@ -1,42 +1,40 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Box, Typography, Alert, AlertTitle } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import defaultVariables from '../variables/variables';
 
 const AddGrievanceForm = () => {
-
+    const navigate = useNavigate();
     const [grievanceTitle, setGrievanceTitle] = useState('');
     const [grievanceDescription, setGrievanceDescription] = useState('');
     const [grievancePerson, setGrievancePerson] = useState('');
-
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const grievance = {
             grievance_title: grievanceTitle,
             grievance_description: grievanceDescription,
             grievance_person: localStorage.getItem("userid")
         };
-
+                  
         axios.post(defaultVariables['backend-url'] + "grievance/add", grievance).then((res) => {
-            setSuccessMessage(res.data);
-            setTimeout(() => {
-                setSuccessMessage(null);
-            },3000)
-            
+              setSuccessMessage(res.data);
+              setTimeout(() => {
+                  setSuccessMessage(null);
+                  navigate("/home/grievance/select");
+              }, 3000)
             }).catch(err => {
-            setErrorMessage("Some error occured");
-            setTimeout(() => {
-                setErrorMessage(null);
-            },3000)
+              setErrorMessage("Some error occured");
+              setTimeout(() => {
+                  setErrorMessage(null);
+              }, 3000)
         })
-        // Handle form submission logic here
     };
 
   return (
@@ -45,7 +43,7 @@ const AddGrievanceForm = () => {
       <br />
       <p className="heading-medium" style={{ textAlign: "left" }}>Add Grievance</p>
       <br />
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={ handleSubmit } >
         <TextField
           label="Title"
           variant="outlined"

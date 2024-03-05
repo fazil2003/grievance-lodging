@@ -47,3 +47,8 @@
     border-radius: 20px;
     box-shadow: 2px 3px 10px rgb(220, 220, 220);
 }
+
+input[type = checkbox]{
+    width: 16px;
+    height: 16px;
+}

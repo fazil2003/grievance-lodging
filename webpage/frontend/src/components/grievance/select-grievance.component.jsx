@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { TextField, Button, Box, Typography, Alert, AlertTitle } from '@mui/material';
 import { useParams } from "react-router-dom";
 import defaultVariables from '../variables/variables';
 
@@ -56,6 +57,29 @@ const SelectGrievance = () => {
         setCheckBoxThree(!checkBoxThree);
     }
 
+    const handleButtonClick = (e) => {
+        e.preventDefault();
+        const grievanceDetails = {
+            grievance_id: "1",
+            grievance_option_1: checkBoxOne,
+            grievance_option_2: checkBoxTwo,
+            grievance_option_3: checkBoxThree
+        };
+                  
+        axios.post(defaultVariables['backend-url'] + "grievance/add", grievanceDetails).then((res) => {
+              setSuccessMessage(res.data);
+              setTimeout(() => {
+                  setSuccessMessage(null);
+              }, 3000)
+              history.go(-2);
+            }).catch(err => {
+              setErrorMessage("Some error occured");
+              setTimeout(() => {
+                  setErrorMessage(null);
+              }, 3000)
+        })
+    }
+
     return (
         <div className='activity-details'>
             <p className='heading-medium' >{ grievance.grievanceTitle }</p>
@@ -100,6 +124,12 @@ const SelectGrievance = () => {
                         }
                     </p>
                 </div>
+
+                <br /><br />
+                <Button onClick={ handleButtonClick } type="submit" variant="contained" color="primary" fullWidth id="react-button">
+                Submit
+                </Button>
+
             </div>
         </div>
     )

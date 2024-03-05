@@ -216,7 +216,6 @@ def get_individual_grievance():
     grievance_id = request.args['id']
     # Get the grievance based on grievance_id.
     sql = "SELECT * FROM grievance WHERE grievance_id = " + grievance_id + ""
-    print(sql)
     cursor.execute(sql)
     allGrievances = cursor.fetchall()
 
@@ -231,12 +230,38 @@ def get_individual_grievance():
         grievanceDate = grievance[6]
         grievanceStatus = grievance[7]
 
+        # Get the department details of which the grievance has been lodged
+        grievance_departments_list = grievanceDepartment.split()
+        for grievance_department_id in grievance_departments_list:
+            # Get the departments based on id.
+            sql_department = "SELECT * FROM departments WHERE department_id = " + grievance_department_id + ""
+            cursor.execute(sql_department)
+            get_department = cursor.fetchall()
+
+            data_department = []
+            for department in get_department:
+
+                department_id = department[0]
+                department_name = department[1]
+                department_category = department[2]
+                department_location = department[3]
+                department_keywords = department[4] 
+
+                obj = {
+                    'departmentID': department_id,
+                    'departmentName': department_name,
+                    'departmentCategory': department_category,
+                    'departmentLocation': department_location,
+                    'departmentKeywords': department_keywords
+                }
+                data_department.append(obj)
+
         obj = {
             'grievanceID': grievanceID,
             'grievanceTitle': grievanceTitle,
             'grievanceDescription': grievanceDescription,
             'grievancePerson': grievancePerson,
-            'grievanceDepartment': grievanceDepartment,
+            'grievanceDepartment': data_department,
             'grievanceDate': grievanceDate,
             'grievanceStatus': grievanceStatus
         }

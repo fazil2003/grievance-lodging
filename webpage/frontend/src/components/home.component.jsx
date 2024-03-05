@@ -8,6 +8,7 @@ import Dashboard from './dashboard/dashboard.component';
 
 import AddPeopleForm from './people/form.component';
 import AddGrievanceForm from './grievance/form.component';
+import ViewGrievance from './grievance/view-grievance.component';
 
 const Home = () =>{
 
@@ -24,6 +25,7 @@ const Home = () =>{
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/people/add" element={<AddPeopleForm />} />
                 <Route exact path="/grievance/add" element={<AddGrievanceForm />} />
+                <Route exact path="/grievance/view/:id" element={<ViewGrievance />} />
                 <Route exact path="*" element={<Dashboard />} />
             </Routes>
             </div>

@@ -199,7 +199,7 @@ def getGrievances():
             'grievanceTitle': grievanceTitle,
             'grievanceDescription': grievanceDescription,
             'grievancePerson': grievancePerson,
-            'grievanceDepartment': grievanceDepartmentText,
+            'grievanceDepartment': grievanceDepartment,
             'grievanceDate': grievanceDate,
             'grievanceStatus': grievanceStatus
         }
@@ -209,6 +209,41 @@ def getGrievances():
 
     return jsonify(data)
     
+
+@app.route('/grievance/view/get', methods = ['GET'])
+@cross_origin(supports_credentials= True)
+def get_individual_grievance():
+    grievance_id = request.args['id']
+    # Get the grievance based on grievance_id.
+    sql = "SELECT * FROM grievance WHERE grievance_id = " + grievance_id + ""
+    print(sql)
+    cursor.execute(sql)
+    allGrievances = cursor.fetchall()
+
+    data = []
+    for grievance in allGrievances:
+        grievanceID = grievance[0]
+        grievanceTitle = grievance[1]
+        grievanceDescription = grievance[2]
+        grievancePerson = grievance[3]
+        grievanceDepartment = grievance[4] # This contains ID
+        grievanceDepartmentText = grievance[5] # This contains full text
+        grievanceDate = grievance[6]
+        grievanceStatus = grievance[7]
+
+        obj = {
+            'grievanceID': grievanceID,
+            'grievanceTitle': grievanceTitle,
+            'grievanceDescription': grievanceDescription,
+            'grievancePerson': grievancePerson,
+            'grievanceDepartment': grievanceDepartment,
+            'grievanceDate': grievanceDate,
+            'grievanceStatus': grievanceStatus
+        }
+        data.append(obj)
+    print(data)
+    return jsonify(data)
+
 @app.route('/login', methods = ['POST']) 
 @cross_origin(supports_credentials=True)
 def login(): 

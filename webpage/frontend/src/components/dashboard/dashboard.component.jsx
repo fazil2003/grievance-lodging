@@ -13,6 +13,7 @@ const Dashboard = () => {
     const [rowData, setRowData] = useState();
 
     const [columnDefs, setColumnDefs] = useState([
+        { field: 'grievanceID', filter: true },
         { field: 'grievanceTitle', filter: true, cellRenderer: LinkCellRenderer },
         { field: 'grievanceDescription', filter: true },
         { field: 'grievanceDepartment', filter: true },
@@ -25,7 +26,7 @@ const Dashboard = () => {
             <a
                 style = {{ color: "var(--font-color)" }}
                 rel="noopener noreferrer"
-                href={ defaultVariables["frontend-url"] + "home/activities/view/" + props.value }
+                href={ defaultVariables["frontend-url"] + "home/grievance/view/" + props.data.grievanceID }
             >
             {props.value}
             </a>

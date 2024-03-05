@@ -231,6 +231,7 @@ def get_individual_grievance():
         grievanceStatus = grievance[7]
 
         # Get the department details of which the grievance has been lodged
+        data_department = []
         grievance_departments_list = grievanceDepartment.split()
         for grievance_department_id in grievance_departments_list:
             # Get the departments based on id.
@@ -238,7 +239,6 @@ def get_individual_grievance():
             cursor.execute(sql_department)
             get_department = cursor.fetchall()
 
-            data_department = []
             for department in get_department:
 
                 department_id = department[0]

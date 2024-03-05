@@ -10,11 +10,17 @@ const ViewGrievance = () => {
 
     let { id } = useParams();
     const [grievance, setGrievance] = useState([]);
+    const [departmentOne, setDepartmentOne] = useState([]);
+    const [departmentTwo, setDepartmentTwo] = useState([]);
+    const [departmentThree, setDepartmentThree] = useState([]);
 
     useEffect(() => {
         axios.get(defaultVariables['backend-url'] + "grievance/view/get?id=" + id)
             .then((res) => {
                 setGrievance(res.data[0]);
+                setDepartmentOne(res.data[0].grievanceDepartment[0]);
+                setDepartmentTwo(res.data[0].grievanceDepartment[1]);
+                setDepartmentThree(res.data[0].grievanceDepartment[2]);
             })
             .catch((err) => {
                 console.log(err);
@@ -33,10 +39,29 @@ const ViewGrievance = () => {
                     <p className='details-field'>Description: </p>
                     <p className='details-value'>{ grievance.grievanceDescription }</p>
                 </div>
-                {/* <div className='details-div'>
-                    <p className='details-field'>Department: </p>
-                    <p className='details-value'>{ grievance.grievanceDepartment }</p>
-                </div> */}
+                <div className='details-div'>
+                    <p className='details-field'>Departments: </p>
+                    <p className='details-value'>
+                        {
+                        departmentOne && <div className='details-div'>
+                            <p className='details-field'>1 </p>
+                            <p className='details-value'>{ departmentOne.departmentName }</p>
+                        </div>
+                        }
+                        {
+                        departmentTwo && <div className='details-div'>
+                            <p className='details-field'>2 </p>
+                            <p className='details-value'>{ departmentTwo.departmentName }</p>
+                        </div>
+                        }
+                        {
+                        departmentThree && <div className='details-div'>
+                            <p className='details-field'>3 </p>
+                            <p className='details-value'>{ departmentThree.departmentName }</p>
+                        </div>
+                        }
+                    </p>
+                </div>
             </div>
         </div>
     )

@@ -9,14 +9,14 @@ import './view-grievance.css';
 
 const SelectGrievance = () => {
 
-    // let { id } = useParams();
+    let { id } = useParams();
     const [grievance, setGrievance] = useState([]);
     const [departmentOne, setDepartmentOne] = useState([]);
     const [departmentTwo, setDepartmentTwo] = useState([]);
     const [departmentThree, setDepartmentThree] = useState([]);
 
     useEffect(() => {
-        axios.get(defaultVariables['backend-url'] + "grievance/view/get?id=1")
+        axios.get(defaultVariables['backend-url'] + "grievance/view/get?id=" + id)
             .then((res) => {
                 setGrievance(res.data[0]);
                 setDepartmentOne(res.data[0].grievanceDepartment[0]);
@@ -60,18 +60,18 @@ const SelectGrievance = () => {
     const handleButtonClick = (e) => {
         e.preventDefault();
         const grievanceDetails = {
-            grievance_id: "1",
+            grievance_id: id,
             grievance_option_1: checkBoxOne,
             grievance_option_2: checkBoxTwo,
             grievance_option_3: checkBoxThree
         };
                   
-        axios.post(defaultVariables['backend-url'] + "grievance/add", grievanceDetails).then((res) => {
+        axios.post(defaultVariables['backend-url'] + "grievance/update", grievanceDetails).then((res) => {
               setSuccessMessage(res.data);
               setTimeout(() => {
                   setSuccessMessage(null);
+                  history.go(-2);
               }, 3000)
-              history.go(-2);
             }).catch(err => {
               setErrorMessage("Some error occured");
               setTimeout(() => {

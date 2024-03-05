@@ -35,7 +35,7 @@ def home():
 
 @app.route("/people/add", methods = ['POST'])
 @cross_origin(supports_credentials=True)
-def addPeople():
+def add_people():
     request_data = request.get_json()
     personName = request_data['person_name']
     personEmail = request_data['person_email']
@@ -51,13 +51,13 @@ def addPeople():
 
 @app.route("/grievance/add", methods = ['POST'])
 @cross_origin(supports_credentials=True)
-def addGrievance():
+def add_grievance():
     request_data = request.get_json()
     grievanceTitle = request_data['grievance_title']
     grievanceDescription = request_data['grievance_description']
     grievancePerson = request_data['grievance_person']
 
-    keywords = generateKeywords(grievanceDescription)
+    keywords = generate_keywords(grievanceDescription)
 
     import generate_accuracies as ga
     # Get the top 3 values.
@@ -112,8 +112,37 @@ def addGrievance():
     db.commit()
     return resultDepartments
 
+@app.route("/grievance/update", methods = ['POST'])
+@cross_origin(supports_credentials=True)
+def update_grievance():
+    request_data = request.get_json()
+    grievance_id = request_data['grievance_id']
+    grievance_option_1 = request_data['grievance_option_1']
+    grievance_option_2 = request_data['grievance_option_2']
+    grievance_option_3 = request_data['grievance_option_3']
+
+    sql = "SELECT * FROM grievance WHERE grievance_id = " + grievance_id + ""
+    cursor.execute(sql)
+    get_grievance = cursor.fetchall()
+    data = []
+    for grievance in get_grievance:
+        grievance_department = grievance[4]
+    grievance_department_list = grievance_department.split("")
+    new_grievance_list = []
+    if (grievance_option_1):
+        new_grievance_list.append(str(grievance_department_list[0]))
+    if (grievance_option_2):
+        new_grievance_list.append(str(grievance_department_list[1]))
+    if (grievance_option_3):
+        new_grievance_list.append(str(grievance_department_list[2]))
+
+    new_grievance_department = " ".join(new_grievance_list)
+    sql = "UPDATE grievance SET grievance_department = '" + new_grievance_department + "' WHERE grievance_id = " + grievance_id + ""
+    cursor.execute(sql)
+    return "success"
+
 # Extract the keywords as a list for the given sentence.
-def generateKeywords(sentence):
+def generate_keywords(sentence):
 
     # Set gpu_layers to the number of layers to offload to GPU. Set to 0 if no GPU acceleration is available on your system.
     model = AutoModelForCausalLM.from_pretrained(
@@ -176,7 +205,7 @@ def get_distance(location):
 
 @app.route('/grievance/get', methods = ['GET']) 
 @cross_origin(supports_credentials=True)
-def getGrievances(): 
+def get_grievances(): 
     userID = request.args['userid']
     sql = "SELECT * FROM grievance WHERE grievance_person = " + userID + ""
     # print(sql)
@@ -209,7 +238,6 @@ def getGrievances():
 
     return jsonify(data)
     
-
 @app.route('/grievance/view/get', methods = ['GET'])
 @cross_origin(supports_credentials= True)
 def get_individual_grievance():

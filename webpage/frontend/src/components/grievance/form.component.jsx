@@ -24,10 +24,9 @@ const AddGrievanceForm = () => {
         };
                   
         axios.post(defaultVariables['backend-url'] + "grievance/add", grievance).then((res) => {
-              setSuccessMessage(res.data);
               setTimeout(() => {
                   setSuccessMessage(null);
-                  navigate("/home/grievance/select");
+                  navigate("/home/grievance/select?id=" + res.data.grievance_id);
               }, 3000)
             }).catch(err => {
               setErrorMessage("Some error occured");

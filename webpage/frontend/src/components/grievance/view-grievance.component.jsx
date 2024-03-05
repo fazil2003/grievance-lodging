@@ -19,8 +19,18 @@ const ViewGrievance = () => {
             .then((res) => {
                 setGrievance(res.data[0]);
                 setDepartmentOne(res.data[0].grievanceDepartment[0]);
-                setDepartmentTwo(res.data[0].grievanceDepartment[1]);
-                setDepartmentThree(res.data[0].grievanceDepartment[2]);
+                if (res.data[0].grievanceDepartment[1]){
+                    setDepartmentTwo(res.data[0].grievanceDepartment[1]);
+                }
+                else{
+                    setDepartmentTwo({});
+                }
+                if (res.data[0].grievanceDepartment[2]){
+                    setDepartmentThree(res.data[0].grievanceDepartment[2]);
+                }
+                else{
+                    setDepartmentThree({});
+                }
             })
             .catch((err) => {
                 console.log(err);

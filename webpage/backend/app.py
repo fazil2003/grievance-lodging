@@ -59,8 +59,6 @@ def addGrievance():
 
     keywords = generateKeywords(grievanceDescription)
 
-    print("KEYWORDS")
-    print(keywords)
     import generate_accuracies as ga
     # Get the top 3 values.
     accuracies = ga.get_overall_accuracies(keywords)[:3]
@@ -69,24 +67,52 @@ def addGrievance():
     # Add the index to result values
     if(len(accuracies) > 0):
         resultDepartments = "Grievance successfully lodged to "
+    get_top_department_indexes = []
     index = 0
     for listIndex, score in accuracies:
+        get_top_department_indexes.append(listIndex)
         resultIndex = resultIndex + str(listIndex) + " "
         if (index == 0):
             resultDepartments = resultDepartments + government_departments_map[listIndex] 
         else:
             resultDepartments = resultDepartments + ", " + government_departments_map[listIndex] 
         index += 1
-
     grievanceDepartments = resultIndex
+
+    get_top_department_indexes = [1, 8, 5]
+    get_the_department_id_to_post = []
+    for individual_department_index in get_top_department_indexes:
+        sql = "SELECT * FROM departments WHERE department_category = " + str(individual_department_index)
+        cursor.execute(sql)
+        query_all_departments = cursor.fetchall()
+        data = []
+        obj = {}
+        minimum_distance = float('inf')
+        minimum_distance_department_id = 0
+        for department_to_complaint in query_all_departments:
+            department_id = department_to_complaint[0]
+            department_name = department_to_complaint[1]
+            department_category = department_to_complaint[2]
+            department_location = department_to_complaint[3]
+            distance_between_locations = get_distance(department_location)
+            if (distance_between_locations < minimum_distance):
+                minimum_distance = distance_between_locations
+                minimum_distance_department_id = department_id
+                obj = {
+                    'departmentID': department_id,
+                    'departmentName': department_name,
+                    'departmentCategory': department_category,
+                    'departmentLocation': department_location
+                }
+        get_the_department_id_to_post.append(str(minimum_distance_department_id))
+    string_departments_to_post = " ".join(get_the_department_id_to_post)
     # %d, %s, %f
-    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + grievanceDepartments + "')"
-    # print(sql)
+    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + string_departments_to_post + "')"
     cursor.execute(sql)
     db.commit()
-    # print(result)
     return resultDepartments
 
+# Extract the keywords as a list for the given sentence.
 def generateKeywords(sentence):
 
     # Set gpu_layers to the number of layers to offload to GPU. Set to 0 if no GPU acceleration is available on your system.
@@ -129,6 +155,24 @@ Use the following format separated by commas:
     keywords = kw_model.extract_keywords(documents, check_vocab=True)
 
     return keywords[0]
+
+# Return the distance between the current location and the parameter location.
+def get_distance(location):
+    # importing geopy library
+    from geopy.distance import geodesic as GD
+    from geopy.geocoders import Nominatim
+    import geocoder
+    # Get the current location of the user.
+    g = geocoder.ip('me')
+    current_location = g.latlng #list
+    # calling the Nominatim tool
+    loc = Nominatim(user_agent="GetLoc")
+    # entering the location name
+    getLoc = loc.geocode(location)
+    location_1 = (current_location[0], current_location[1])
+    location_2 = (getLoc.latitude, getLoc.longitude)
+    distance_between_locations = GD(location_1, location_2)
+    return distance_between_locations
 
 @app.route('/grievance/get', methods = ['GET']) 
 @cross_origin(supports_credentials=True)

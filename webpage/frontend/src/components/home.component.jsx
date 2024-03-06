@@ -24,7 +24,7 @@ const Home = () =>{
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/people/add" element={<AddPeopleForm />} />
                 <Route exact path="/grievance/add" element={<AddGrievanceForm />} />
-                <Route exact path="/grievance/select" element={<SelectGrievance />} />
+                <Route exact path="/grievance/select/:id" element={<SelectGrievance />} />
                 <Route exact path="/grievance/view/:id" element={<ViewGrievance />} />
                 <Route exact path="*" element={<Dashboard />} />
             </Routes>

@@ -23,13 +23,13 @@ const ViewGrievance = () => {
                     setDepartmentTwo(res.data[0].grievanceDepartment[1]);
                 }
                 else{
-                    setDepartmentTwo({});
+                    setDepartmentTwo(null);
                 }
                 if (res.data[0].grievanceDepartment[2]){
                     setDepartmentThree(res.data[0].grievanceDepartment[2]);
                 }
                 else{
-                    setDepartmentThree({});
+                    setDepartmentThree(null);
                 }
             })
             .catch((err) => {

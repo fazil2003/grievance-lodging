@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Alert, AlertTitle } from '@mui/material';
 import { useParams } from "react-router-dom";
 import defaultVariables from '../variables/variables';
@@ -10,10 +11,16 @@ import './view-grievance.css';
 const SelectGrievance = () => {
 
     let { id } = useParams();
+
+    const navigate = useNavigate();
+
     const [grievance, setGrievance] = useState([]);
     const [departmentOne, setDepartmentOne] = useState([]);
     const [departmentTwo, setDepartmentTwo] = useState([]);
     const [departmentThree, setDepartmentThree] = useState([]);
+
+    const [successMessage, setSuccessMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
         axios.get(defaultVariables['backend-url'] + "grievance/view/get?id=" + id)
@@ -57,6 +64,10 @@ const SelectGrievance = () => {
         setCheckBoxThree(!checkBoxThree);
     }
 
+    const navigateToHomeActivity = () => {
+        navigate("/home");
+    }
+
     const handleButtonClick = (e) => {
         e.preventDefault();
         const grievanceDetails = {
@@ -68,10 +79,7 @@ const SelectGrievance = () => {
                   
         axios.post(defaultVariables['backend-url'] + "grievance/update", grievanceDetails).then((res) => {
               setSuccessMessage(res.data);
-              setTimeout(() => {
-                  setSuccessMessage(null);
-                  history.go(-2);
-              }, 3000)
+              navigateToHomeActivity();
             }).catch(err => {
               setErrorMessage("Some error occured");
               setTimeout(() => {

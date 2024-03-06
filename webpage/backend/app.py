@@ -106,11 +106,26 @@ def add_grievance():
                 }
         get_the_department_id_to_post.append(str(minimum_distance_department_id))
     string_departments_to_post = " ".join(get_the_department_id_to_post)
+
+    from datetime import date
+    today = date.today()
+    now = today.strftime('%Y-%m-%d')
     # %d, %s, %f
-    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + string_departments_to_post + "')"
+    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department, grievance_date) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + string_departments_to_post + "', '" + now + "')"
     cursor.execute(sql)
     db.commit()
-    return resultDepartments
+
+    sql = "SELECT * FROM grievance ORDER BY grievance_id DESC LIMIT 1"
+    cursor.execute(sql)
+    query_get_current_grievance = cursor.fetchall()
+    grievance_id = ""
+    for current_grievance in query_get_current_grievance:
+        grievance_id = str(current_grievance[0])
+
+    result = {
+                'grievance_id': grievance_id
+            }
+    return result
 
 @app.route("/grievance/update", methods = ['POST'])
 @cross_origin(supports_credentials=True)
@@ -125,9 +140,16 @@ def update_grievance():
     cursor.execute(sql)
     get_grievance = cursor.fetchall()
     data = []
+    grievance_department = ""
     for grievance in get_grievance:
         grievance_department = grievance[4]
-    grievance_department_list = grievance_department.split("")
+    grievance_department_list = grievance_department.split(" ")
+    
+    print(grievance_department_list)
+    print("One", grievance_option_1)
+    print("Two", grievance_option_2)
+    print("Three", grievance_option_3)
+    
     new_grievance_list = []
     if (grievance_option_1):
         new_grievance_list.append(str(grievance_department_list[0]))
@@ -139,7 +161,12 @@ def update_grievance():
     new_grievance_department = " ".join(new_grievance_list)
     sql = "UPDATE grievance SET grievance_department = '" + new_grievance_department + "' WHERE grievance_id = " + grievance_id + ""
     cursor.execute(sql)
-    return "success"
+    db.commit()
+
+    result = {
+            'data': 'success'
+        }
+    return result
 
 # Extract the keywords as a list for the given sentence.
 def generate_keywords(sentence):

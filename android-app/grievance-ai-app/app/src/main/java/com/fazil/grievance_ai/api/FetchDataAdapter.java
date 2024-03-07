@@ -21,7 +21,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fazil.grievance_ai.MainActivity;
 import com.fazil.grievance_ai.R;
+import com.fazil.grievance_ai.SplashScreenActivity;
+import com.fazil.grievance_ai.ViewGrievanceActivity;
 import com.fazil.grievance_ai.utilities.CustomPrompt;
 
 import java.util.ArrayList;
@@ -61,7 +64,19 @@ public class FetchDataAdapter extends RecyclerView.Adapter<FetchDataAdapter.View
 
         // * Set the OnTouch Listeners.
         // holder.buttonDeleteProject.setOnTouchListener((view, motionEvent) -> new ButtonScaleAnimation(context).animateButton(view, motionEvent));
-
+        holder.buttonViewProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, ViewGrievanceActivity.class);
+                i.putExtra("title", fetchDataModal.getItemTitle());
+                i.putExtra("description", fetchDataModal.getItemDescription());
+                i.putExtra("department_1", fetchDataModal.getGrievanceDepartmentOne());
+                i.putExtra("department_2", fetchDataModal.getGrievanceDepartmentTwo());
+                i.putExtra("department_3", fetchDataModal.getGrievanceDepartmentThree());
+                i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override

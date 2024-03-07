@@ -7,7 +7,34 @@ public class FetchDataModal {
     // Variables declarations.
     private int itemID;
     private String  itemTitle, itemDescription, itemDate;
+
+    public String getGrievanceDepartmentOne() {
+        return grievanceDepartmentOne;
+    }
+
+    public void setGrievanceDepartmentOne(String grievanceDepartmentOne) {
+        this.grievanceDepartmentOne = grievanceDepartmentOne;
+    }
+
+    public String getGrievanceDepartmentTwo() {
+        return grievanceDepartmentTwo;
+    }
+
+    public void setGrievanceDepartmentTwo(String grievanceDepartmentTwo) {
+        this.grievanceDepartmentTwo = grievanceDepartmentTwo;
+    }
+
+    public String getGrievanceDepartmentThree() {
+        return grievanceDepartmentThree;
+    }
+
+    public void setGrievanceDepartmentThree(String grievanceDepartmentThree) {
+        this.grievanceDepartmentThree = grievanceDepartmentThree;
+    }
+
     private String itemCode, itemHTML, itemCSS, itemJavaScript;
+
+    private String grievanceDepartmentOne, grievanceDepartmentTwo, grievanceDepartmentThree;
     private boolean itemLocked;
     private Constants.fetchDataType itemType;
 

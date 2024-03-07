@@ -209,6 +209,10 @@ public class GetAllGrievancesActivity extends AppCompatActivity {
                 data.setItemTitle(object.getString("grievanceTitle"));
                 data.setItemDescription(object.getString("grievanceDescription"));
 
+                data.setGrievanceDepartmentOne(object.getString("grievanceDepartmentOne"));
+                data.setGrievanceDepartmentTwo(object.getString("grievanceDepartmentTwo"));
+                data.setGrievanceDepartmentThree(object.getString("grievanceDepartmentThree"));
+
                 // Add data in array list
                 dataArrayList.add(data);
             } catch (JSONException e) {

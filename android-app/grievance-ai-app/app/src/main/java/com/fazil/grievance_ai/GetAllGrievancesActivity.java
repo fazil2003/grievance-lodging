@@ -81,7 +81,7 @@ public class GetAllGrievancesActivity extends AppCompatActivity {
                 setTheme(R.style.DarkTheme);
                 break;
             default:
-                setTheme(R.style.DarkTheme);
+                setTheme(R.style.LightTheme);
                 break;
         }
 

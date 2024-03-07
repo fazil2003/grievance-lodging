@@ -52,7 +52,7 @@ public class AddGrievanceActivity extends AppCompatActivity {
                 setTheme(R.style.DarkTheme);
                 break;
             default:
-                setTheme(R.style.DarkTheme);
+                setTheme(R.style.LightTheme);
                 break;
         }
 
@@ -76,5 +76,10 @@ public class AddGrievanceActivity extends AppCompatActivity {
         editTextProjectName = findViewById(R.id.edittext_project_name);
         editTextProjectDescription = findViewById(R.id.edittext_project_description);
         buttonCreateProject = findViewById(R.id.button_create_project);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.intent_no_animation, R.anim.intent_exit_animation);
     }
 }

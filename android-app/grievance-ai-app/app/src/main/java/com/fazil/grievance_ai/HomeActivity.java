@@ -4,28 +4,29 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.fazil.grievance_ai.utilities.CustomActionBar;
 import com.fazil.grievance_ai.utilities.GradientText;
 import com.fazil.grievance_ai.utilities.TinyDB;
+import com.fazil.grievance_ai.utilities.UtilityFunctions;
 
 import java.util.Objects;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
+
+    // Utility Functions.
+    UtilityFunctions utilityFunctions;
+
+    CardView cardViewAddGrievance, cardViewGetAllGrievances;
 
     private static int SPLASH_SCREEN_TIME_OUT = 1500;
     TextView versionName;
@@ -52,7 +53,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 break;
         }
 
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_home);
 
         // * Remove Dark Mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -79,25 +80,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         TextView textViewAppName = findViewById(R.id.textview_app_name);
         new GradientText(this).setGradientText(textViewAppName);
 
-        // * Set Gradient TextView for the Title.
-        TextView textViewTitle = findViewById(R.id.textview_title);
-        new GradientText(this).setGradientText(textViewTitle);
+        utilityFunctions = new UtilityFunctions(HomeActivity.this);
 
-        // * Display the Version Name.
-        versionName = findViewById(R.id.version_name);
-        versionName.setText("Version: " + BuildConfig.VERSION_NAME);
+        cardViewAddGrievance = findViewById(R.id.cardview_add_grievance);
+        cardViewGetAllGrievances = findViewById(R.id.cardview_get_all_grievances);
 
-        // * Open the Next Activity after some time.
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                // * New Activity Animation, Current Activity Animation.
-                overridePendingTransition(R.anim.intent_enter_animation, R.anim.intent_no_animation);
-                finish();
-            }
-        }, SPLASH_SCREEN_TIME_OUT);
+        cardViewAddGrievance.setOnClickListener(v ->
+                utilityFunctions.moveToActivity(new AddGrievanceActivity())
+        );
+
+        cardViewGetAllGrievances.setOnClickListener(v ->
+                utilityFunctions.moveToActivity(new GetAllGrievancesActivity())
+        );
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="backgroundColor" format="reference|color" />
+    <attr name="primaryColor" format="reference|color" />
+    <attr name="secondaryColor" format="reference|color" />
+    <attr name="premiumColor" format="reference|color" />
+    <attr name="cardViewColor" format="reference|color" />
+    <attr name="buttonColor" format="reference|color" />
+    <attr name="fontColor" format="reference|color"/>
+    <attr name="buttonColor1" format="reference|color"/>
+    <attr name="buttonColor2" format="reference|color"/>
+
+    <attr name="fontNormal" format="reference" />
+    <attr name="fontBold" format="reference" />
+    <attr name="fontSemiBold" format="reference" />
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">grievance-ai</string>
+    <string name="api_v1">http://192.168.18.20:5000/</string>
+</resources>

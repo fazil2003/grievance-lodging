@@ -1,0 +1,79 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<FrameLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:background="?attr/backgroundColor"
+        android:alpha="1.0"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/button_go_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="2.5dp"
+                android:paddingRight="2.5dp"
+                android:paddingTop="2.5dp"
+                android:paddingBottom="2.5dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                app:backgroundTint="@android:color/transparent"
+                app:tint="?attr/secondaryColor"
+                android:src="@drawable/baseline_arrow_back_24"/>
+
+            <TextView
+                android:id="@+id/textview_activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="22sp"
+                android:textColor="?attr/secondaryColor"
+                android:text="grievance.ai" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end">
+
+                <ImageButton
+                    android:id="@+id/action_bar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    app:backgroundTint="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    app:tint="?attr/premiumColor"
+                    android:src="@drawable/ic_baseline_lock_24" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

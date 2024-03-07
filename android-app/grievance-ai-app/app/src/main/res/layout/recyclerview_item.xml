@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:layout_marginTop="10dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:id="@+id/layout_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/cardViewColor"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="20">
+
+                <ImageView
+                    android:id="@+id/item_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_folder_24"
+                    app:tint="@color/dodgerblue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="80"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Item ID"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="?attr/fontBold"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Item Title"
+                    android:textColor="?attr/secondaryColor"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/item_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.5dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Item Description"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="@color/dodgerblue"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/item_date"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.5dp"
+                    android:text="Item Date"
+                    android:textColor="?attr/secondaryColor"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Linear layout for Buttons. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:weightSum="2">
+            
+            <Button
+                android:id="@+id/button_view_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_design"
+                app:backgroundTint="@null"
+                android:drawableTint="@color/dodgerblue"
+                android:drawableRight="@drawable/baseline_arrow_forward_24"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/darkcolor_1"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:text="View" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/button_unlock_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_design"
+                app:backgroundTint="@null"
+                android:drawableTint="@color/dodgerblue"
+                android:drawableRight="@drawable/baseline_lock_open_24"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/darkcolor_1"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:text="Unlock" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/button_delete_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_design"
+                app:backgroundTint="@null"
+                android:drawableTint="@color/tomato"
+                android:drawableRight="@drawable/ic_baseline_delete_forever_24"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/darkcolor_1"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:text="Delete" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

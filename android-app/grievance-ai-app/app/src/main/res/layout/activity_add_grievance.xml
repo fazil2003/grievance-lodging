@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <!-- Project Name -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/baseline_auto_fix_high_24"
+                app:startIconTint="@color/dodgerblue"
+                app:endIconMode="clear_text"
+                app:endIconTint="?attr/secondaryColor"
+                app:boxBackgroundMode="outline"
+                android:hint="Grievance Title"
+                app:helperText="Example: Which dress should I wear today?"
+                app:helperTextTextColor="@color/gray"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:counterTextColor="@color/gray"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/dodgerblue"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColor="@drawable/textinputlayout_box_stroke_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_project_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="?attr/secondaryColor"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="20sp"
+                    android:inputType="text|textCapSentences"
+                    android:maxLength="100"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Project Description -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text"
+                app:endIconTint="?attr/secondaryColor"
+                app:boxBackgroundMode="outline"
+                android:hint="Grievance Description"
+                app:helperText="Example: Which dress should I wear today?"
+                app:helperTextTextColor="@color/gray"
+                app:counterEnabled="true"
+                app:counterMaxLength="500"
+                app:counterTextColor="@color/gray"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/dodgerblue"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColor="@drawable/textinputlayout_box_stroke_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_project_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="top"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="?attr/secondaryColor"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="16sp"
+                    android:inputType="text|textCapSentences|textMultiLine"
+                    android:maxLength="500" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/option_html"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:backgroundTint="?attr/secondaryColor"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="?attr/primaryColor"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="HTML"/>
+
+                <Button
+                    android:id="@+id/option_python"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:backgroundTint="?attr/secondaryColor"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="?attr/primaryColor"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="Python"/>
+
+                <Button
+                    android:id="@+id/option_php"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:backgroundTint="?attr/secondaryColor"
+                    android:fontFamily="?attr/fontSemiBold"
+                    android:textColor="?attr/primaryColor"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="PHP"/>
+
+            </LinearLayout>
+
+            <!-- Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxBackgroundMode="outline"
+                android:hint="Project Language"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                android:textColorHint="@color/buttoncolor_2"
+                app:hintTextColor="@color/dodgerblue"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColor="@drawable/textinputlayout_box_stroke_color">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_project_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="PHP"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:inputType="none"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_create_project"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_design"
+                app:backgroundTint="?attr/secondaryColor"
+                android:drawableTint="?attr/primaryColor"
+                android:drawableLeft="@drawable/baseline_add_24"
+                android:paddingLeft="20dp"
+                android:paddingTop="7.5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="7.5dp"
+                android:textColor="?attr/primaryColor"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:text="Submit"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

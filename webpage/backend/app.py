@@ -264,6 +264,76 @@ def get_grievances():
     print(data)
 
     return jsonify(data)
+
+@app.route('/grievance/get.php', methods = ['GET']) 
+@cross_origin(supports_credentials=True)
+def get_grievances_php(): 
+    userID = request.args['userid']
+    start = request.args["start"]
+    limit = request.args["limit"]
+    sql = "SELECT * FROM grievance WHERE grievance_person = " + userID + " ORDER BY grievance_id LIMIT " + str(start) + ", " + str(limit)
+    # print(sql)
+    cursor.execute(sql)
+    allGrievances = cursor.fetchall()
+
+    data = []
+    for grievance in allGrievances:
+        grievanceID = grievance[0]
+        grievanceTitle = grievance[1]
+        grievanceDescription = grievance[2]
+        grievancePerson = grievance[3]
+        grievanceDepartment = grievance[4] # This contains ID
+        grievanceDepartmentText = grievance[5] # This contains full text
+        grievanceDate = grievance[6]
+        grievanceStatus = grievance[7]
+
+        # Get the department details of which the grievance has been lodged
+        count = 0
+        departmentOne = ""
+        departmentTwo = ""
+        departmentThree = ""
+        data_department = []
+        grievance_departments_list = grievanceDepartment.split()
+        for grievance_department_id in grievance_departments_list:
+            # Get the departments based on id.
+            sql_department = "SELECT * FROM departments WHERE department_id = " + grievance_department_id + ""
+            cursor.execute(sql_department)
+            get_department = cursor.fetchall()
+
+            for department in get_department:
+
+                department_id = department[0]
+                department_name = department[1]
+                department_category = department[2]
+                department_location = department[3]
+                department_keywords = department[4] 
+
+                if (count == 0):
+                    departmentOne = department_name
+                if (count == 1):
+                    departmentTwo = department_name
+                if (count == 2):
+                    departmentThree = department_name
+
+                count += 1
+
+        obj = {
+            'grievanceID': grievanceID,
+            'grievanceTitle': grievanceTitle,
+            'grievanceDescription': grievanceDescription,
+            'grievancePerson': grievancePerson,
+            'grievanceDepartment': grievanceDepartment,
+            'grievanceDate': grievanceDate,
+            'grievanceStatus': grievanceStatus,
+            'grievanceDepartmentOne': departmentOne,
+            'grievanceDepartmentTwo': departmentTwo,
+            'grievanceDepartmentThree': departmentThree
+        }
+        data.append(obj)
+
+    print(data)
+
+    return jsonify(data)
     
 @app.route('/grievance/view/get', methods = ['GET'])
 @cross_origin(supports_credentials= True)
@@ -348,4 +418,4 @@ def login():
     return jsonify(data)
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')

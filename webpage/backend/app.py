@@ -79,7 +79,8 @@ def add_grievance():
         index += 1
     grievanceDepartments = resultIndex
 
-    get_top_department_indexes = [1, 8, 5]
+    # For testing purpose.
+    # get_top_department_indexes = [1, 8, 5]
     get_the_department_id_to_post = []
     for individual_department_index in get_top_department_indexes:
         sql = "SELECT * FROM departments WHERE department_category = " + str(individual_department_index)

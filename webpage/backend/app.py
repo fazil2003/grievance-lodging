@@ -460,7 +460,7 @@ def admin_get_grievances():
         sql = "SELECT * FROM grievance"
     else:
         sql = "SELECT * FROM grievance WHERE grievance_department LIKE '%" + userID + "%'"
-    # print(sql)
+        
     cursor.execute(sql)
     allGrievances = cursor.fetchall()
 

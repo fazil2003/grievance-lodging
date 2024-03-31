@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2024 at 02:27 PM
+-- Generation Time: Mar 31, 2024 at 03:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -95,8 +95,9 @@ CREATE TABLE `grievance` (
 --
 
 INSERT INTO `grievance` (`grievance_id`, `grievance_title`, `grievance_description`, `grievance_person`, `grievance_department`, `grievance_department_text`, `grievance_date`, `grievance_status`) VALUES
-(1, 'violation of rights ', 'violation of rights ', '1', ' 2 5 7 ', '', '2024-03-09', 0),
-(2, 'Sample', 'Sample', '1', ' 2 5 7 ', '', '2024-03-09', 0);
+(1, 'violation of rights ', 'violation of rights ', '1', ' 2 5 7 ', '', '2024-03-09', 1),
+(2, 'Sample', 'Sample', '1', ' 2 5 7 ', '', '2024-03-09', 0),
+(3, 'Violation against children', 'Violation against children', '1', ' 3 1 6 ', '', '2024-03-31', 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `grievance`
 --
 ALTER TABLE `grievance`
-  MODIFY `grievance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `grievance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `person`

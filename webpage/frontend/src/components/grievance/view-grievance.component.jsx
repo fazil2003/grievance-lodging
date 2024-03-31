@@ -13,11 +13,22 @@ const ViewGrievance = () => {
     const [departmentOne, setDepartmentOne] = useState([]);
     const [departmentTwo, setDepartmentTwo] = useState([]);
     const [departmentThree, setDepartmentThree] = useState([]);
+    const [grievanceStatus, setGrievanceStatus] = useState(null);
 
     useEffect(() => {
         axios.get(defaultVariables['backend-url'] + "grievance/view/get?id=" + id)
             .then((res) => {
                 setGrievance(res.data[0]);
+                if (res.data[0].grievanceStatus == 0){
+                    setGrievanceStatus("Not assigned");
+                }
+                if (res.data[0].grievanceStatus == 1){
+                    setGrievanceStatus("Assigned");
+                }
+                if (res.data[0].grievanceStatus == 2){
+                    setGrievanceStatus("Fixed");
+                }
+                    
                 setDepartmentOne(res.data[0].grievanceDepartment[0]);
                 if (res.data[0].grievanceDepartment[1]){
                     setDepartmentTwo(res.data[0].grievanceDepartment[1]);
@@ -73,6 +84,12 @@ const ViewGrievance = () => {
                     </p>
                 </div>
             </div>
+            <p className='heading-small'>Status</p>
+            <center>
+                <div className='activity-buttons'>
+                    <p className='heading-medium'>{ grievanceStatus}</p> 
+                </div>
+            </center>
         </div>
     )
 };

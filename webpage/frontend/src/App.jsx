@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import './App.css'
 import Login from './components/login.component'
 import Home from './components/home.component'
+import Admin from './components/admin.component'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,8 +18,8 @@ function App() {
 					(<Route exact path="/home/*" element={<Login setIsAuthenticated = {setIsAuthenticated} />}  />)
 				}
 				{ isAuthenticated ?
-					(<Route exact path="/staff/*" element={<Home setIsAuthenticated = {setIsAuthenticated} />} />):
-					(<Route exact path="/staff/*" element={<Login setIsAuthenticated = {setIsAuthenticated} />}  />)
+					(<Route exact path="/admin/*" element={<Admin setIsAuthenticated = {setIsAuthenticated} />} />):
+					(<Route exact path="/admin/*" element={<Login setIsAuthenticated = {setIsAuthenticated} />}  />)
 				}
 				<Route path="*" element={<Login setIsAuthenticated = {setIsAuthenticated}/>} />
 			</Routes>

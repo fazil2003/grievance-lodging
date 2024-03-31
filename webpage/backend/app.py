@@ -112,7 +112,7 @@ def add_grievance():
     today = date.today()
     now = today.strftime('%Y-%m-%d')
     # %d, %s, %f
-    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department, grievance_date) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", '" + string_departments_to_post + "', '" + now + "')"
+    sql = "INSERT INTO grievance (grievance_title, grievance_description, grievance_person, grievance_department, grievance_date) VALUES ('" + grievanceTitle + "', '" + grievanceDescription + "', " + grievancePerson + ", ' " + string_departments_to_post + " ', '" + now + "')"
     cursor.execute(sql)
     db.commit()
 
@@ -144,6 +144,7 @@ def update_grievance():
     grievance_department = ""
     for grievance in get_grievance:
         grievance_department = grievance[4]
+        grievance_department = grievance_department.strip()
     grievance_department_list = grievance_department.split(" ")
     
     print(grievance_department_list)
@@ -160,7 +161,7 @@ def update_grievance():
         new_grievance_list.append(str(grievance_department_list[2]))
 
     new_grievance_department = " ".join(new_grievance_list)
-    sql = "UPDATE grievance SET grievance_department = '" + new_grievance_department + "' WHERE grievance_id = " + grievance_id + ""
+    sql = "UPDATE grievance SET grievance_department = ' " + new_grievance_department + " ' WHERE grievance_id = " + grievance_id + ""
     cursor.execute(sql)
     db.commit()
 
@@ -431,19 +432,61 @@ def login():
     cursor.execute(sql)
     myresult = cursor.fetchall()
     personID = 0
+    adminDept = 0
     for x in myresult:
         personID = x[0]
+        if (role == 'admin'):
+            adminDept = x[4]
 
     if(len(myresult) > 0):
         data = { 
             "auth" : "success", 
-            "userid": personID
+            "userid": personID,
+            "admindept": adminDept
         } 
     else:
         data = { 
             "auth" : "fail", 
             "userid": "0"
         } 
+
+    return jsonify(data)
+
+@app.route('/admin/grievance/get', methods = ['GET']) 
+@cross_origin(supports_credentials=True)
+def admin_get_grievances(): 
+    userID = request.args['userid']
+    if (userID == '0'):
+        sql = "SELECT * FROM grievance"
+    else:
+        sql = "SELECT * FROM grievance WHERE grievance_department LIKE '%" + userID + "%'"
+    # print(sql)
+    cursor.execute(sql)
+    allGrievances = cursor.fetchall()
+
+    data = []
+    for grievance in allGrievances:
+        grievanceID = grievance[0]
+        grievanceTitle = grievance[1]
+        grievanceDescription = grievance[2]
+        grievancePerson = grievance[3]
+        grievanceDepartment = grievance[4] # This contains ID
+        grievanceDepartmentText = grievance[5] # This contains full text
+        grievanceDate = grievance[6]
+        grievanceStatus = grievance[7]
+
+        obj = {
+            'grievanceID': grievanceID,
+            'grievanceTitle': grievanceTitle,
+            'grievanceDescription': grievanceDescription,
+            'grievancePerson': grievancePerson,
+            'grievanceDepartment': grievanceDepartment,
+            'grievanceDate': grievanceDate,
+            'grievanceStatus': grievanceStatus
+        }
+        data.append(obj)
+
+    print(data)
 
     return jsonify(data)
     

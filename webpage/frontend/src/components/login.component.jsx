@@ -24,8 +24,9 @@ const Login = (props) =>{
 			props.setIsAuthenticated(true);
             if (response.data.auth == "success"){
 				localStorage.setItem("userid", response.data.userid);
+				localStorage.setItem("admindept", response.data.admindept);
                 if(role === "admin"){
-                    navigate("/home/dashboard");
+                    navigate("/admin/dashboard");
                 }
                 else{
                     navigate("/home/dashboard");

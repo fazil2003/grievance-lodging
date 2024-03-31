@@ -161,7 +161,7 @@ def update_grievance():
         new_grievance_list.append(str(grievance_department_list[2]))
 
     new_grievance_department = " ".join(new_grievance_list)
-    sql = "UPDATE grievance SET grievance_department = ' " + new_grievance_department + " ' WHERE grievance_id = " + grievance_id + ""
+    sql = "UPDATE grievance SET grievance_department = ' " + new_grievance_department + " ' WHERE grievance_id = " + str(grievance_id) + ""
     cursor.execute(sql)
     db.commit()
 
@@ -234,8 +234,8 @@ def get_distance(location):
     # initialize Nominatim API
     geolocator = Nominatim(user_agent="geoapiExercises")
     # Latitude, Longitude
-    location_me = geolocator.reverse(str(location_1[0]) + "," + str(location_1[1]))
-    location_them = geolocator.reverse(str(location_2[0]) + "," + str(location_2[0]))
+    location_me = geolocator.reverse(str(current_location[0]) + "," + str(current_location[1]))
+    location_them = geolocator.reverse(str(getLoc.latitude) + "," + str(getLoc.longitude))
 
     address_1 = location_me.raw['address']
     district_1 = address_1.get('state_district', '')
@@ -460,7 +460,7 @@ def admin_get_grievances():
         sql = "SELECT * FROM grievance"
     else:
         sql = "SELECT * FROM grievance WHERE grievance_department LIKE '%" + userID + "%'"
-        
+
     cursor.execute(sql)
     allGrievances = cursor.fetchall()
 
@@ -489,6 +489,21 @@ def admin_get_grievances():
     print(data)
 
     return jsonify(data)
+
+@app.route("/admin/grievance/update", methods = ['POST'])
+@cross_origin(supports_credentials=True)
+def admin_update_grievance():
+    request_data = request.get_json()
+    grievance_id = request_data['grievance_id']
+    grievance_status = request_data['grievance_status']
+
+    sql = "UPDATE grievance SET grievance_status = " + str(grievance_status) + " WHERE grievance_id = " + str(grievance_id) + ""
+    cursor.execute(sql)
+    db.commit()
+    result = {
+            'data': 'success'
+        }
+    return result
     
 if __name__ == "__main__":
     app.run(debug=True, host= '0.0.0.0')

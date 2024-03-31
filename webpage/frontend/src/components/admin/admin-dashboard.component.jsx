@@ -26,7 +26,7 @@ const AdminDashboard = () => {
             <a
                 style = {{ color: "var(--font-color)" }}
                 rel="noopener noreferrer"
-                href={ defaultVariables["frontend-url"] + "admin/grievance/view/" + props.data.grievanceID }
+                href={ defaultVariables["frontend-url"] + "admin/grievance/view/" + props.data.grievanceID + "/" + props.data.grievanceStatus }
             >
             {props.value}
             </a>

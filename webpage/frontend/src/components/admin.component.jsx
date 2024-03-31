@@ -6,7 +6,7 @@ import Header from './header';
 import Footer from './footer';
 import SideBar from './sidebar';
 
-import ViewGrievance from './grievance/view-grievance.component';
+import AdminViewGrievance from './admin/admin-view-grievance.component';
 import AdminDashboard from './admin/admin-dashboard.component';
 
 const Admin = () =>{
@@ -20,7 +20,7 @@ const Admin = () =>{
             <Routes>
                 <Route exact path="/" element={<AdminDashboard />} />
                 <Route exact path="/dashboard" element={<AdminDashboard />} />
-                <Route exact path="/grievance/view/:id" element={<ViewGrievance />} />
+                <Route exact path="/grievance/view/:id/:status" element={<AdminViewGrievance />} />
                 <Route exact path="*" element={<AdminDashboard />} />
             </Routes>
             </div>

@@ -228,6 +228,26 @@ def get_distance(location):
     getLoc = loc.geocode(location)
     location_1 = (current_location[0], current_location[1])
     location_2 = (getLoc.latitude, getLoc.longitude)
+
+    # Check for same state and same district.
+    # initialize Nominatim API
+    geolocator = Nominatim(user_agent="geoapiExercises")
+    # Latitude, Longitude
+    location_me = geolocator.reverse(str(location_1[0]) + "," + str(location_1[1]))
+    location_them = geolocator.reverse(str(location_2[0]) + "," + str(location_2[0]))
+
+    address_1 = location_me.raw['address']
+    district_1 = address_1.get('state_district', '')
+    state_1 = address_1.get('state', '')
+
+    address_2 = location_them.raw['address']
+    district_2 = address_2.get('state_district', '')
+    state_2 = address_2.get('state', '')
+
+    if (district_1 == district_2):
+        return -1
+    if (state_1 == state_2):
+        return 0
     distance_between_locations = GD(location_1, location_2)
     return distance_between_locations
 
@@ -403,7 +423,10 @@ def login():
     password = request_data['password']
     role = request_data['role']
 
-    sql = "SELECT * FROM person WHERE person_email = '" + username + "' AND person_password = '" + password + "'"
+    if (role == 'admin'):
+        sql = "SELECT * FROM admin WHERE admin_email = '" + username + "' AND admin_password = '" + password + "'"
+    else:
+        sql = "SELECT * FROM person WHERE person_email = '" + username + "' AND person_password = '" + password + "'"
     # print(sql)
     cursor.execute(sql)
     myresult = cursor.fetchall()
@@ -411,10 +434,16 @@ def login():
     for x in myresult:
         personID = x[0]
 
-    data = { 
-        "auth" : "success", 
-        "userid": personID
-    } 
+    if(len(myresult) > 0):
+        data = { 
+            "auth" : "success", 
+            "userid": personID
+        } 
+    else:
+        data = { 
+            "auth" : "fail", 
+            "userid": "0"
+        } 
 
     return jsonify(data)
     

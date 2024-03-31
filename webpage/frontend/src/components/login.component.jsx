@@ -11,7 +11,7 @@ const Login = (props) =>{
 	const navigate = useNavigate();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [role, setRole] = useState("admin");
+	const [role, setRole] = useState("user");
 
 	function userLogin(event){
 		event.preventDefault();
@@ -31,6 +31,9 @@ const Login = (props) =>{
                     navigate("/home/dashboard");
                 }
             }
+			else{
+				alert("failed");
+			}
 		})
 		.catch(error => {
 			alert(error)
@@ -48,17 +51,17 @@ const Login = (props) =>{
 				<br />
 
 				<div className='login-categories'>
-					<div id='category-admin' className='login-category' onClick={() => setRole("admin")}
-					style={{ backgroundColor: role == "admin" ? 'lightblue': 'white', fontWeight: role == "admin" ? 'bold' :'normal',cursor: 'pointer'}}
+					<div id='category-admin' className='login-category' onClick={() => setRole("user")}
+					style={{ backgroundColor: role == "user" ? 'lightblue': 'white', fontWeight: role == "user" ? 'bold' :'normal',cursor: 'pointer'}}
 					>
 						<img src={ avatarProfileIcon } />
 						<span>User</span>
 					</div>
-					<div id='category-staff' className='login-category' onClick={() => setRole("staff")}
-					style={{ backgroundColor: role == "staff" ? 'lightblue': 'white', fontWeight: role == "staff" ? 'bold' :'normal', cursor: 'pointer'}}
+					<div id='category-staff' className='login-category' onClick={() => setRole("admin")}
+					style={{ backgroundColor: role == "admin" ? 'lightblue': 'white', fontWeight: role == "admin" ? 'bold' :'normal', cursor: 'pointer'}}
 					>
 						<img src={ avatarProfileIcon } />
-						<span>Officer</span>
+						<span>Admin</span>
 					</div>
 				</div>
 

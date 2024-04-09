@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Alert, AlertTitle } from '@mui/material';
 import { useParams } from "react-router-dom";
 import defaultVariables from '../variables/variables';
-
 import './view-grievance.css';
+import { useTranslation } from "react-i18next";
 
 const SelectGrievance = () => {
+
+    const { t } = useTranslation();
 
     let { id } = useParams();
 
@@ -93,15 +95,15 @@ const SelectGrievance = () => {
             <p className='heading-medium' >{ grievance.grievanceTitle }</p>
             <div className='all-details-div'>
                 <div className='details-div'>
-                    <p className='details-field'>Title: </p>
+                    <p className='details-field'>{ t('title') }: </p>
                     <p className='details-value'>{ grievance.grievanceTitle }</p>
                 </div>
                 <div className='details-div'>
-                    <p className='details-field'>Description: </p>
+                    <p className='details-field'>{ t('description') }: </p>
                     <p className='details-value'>{ grievance.grievanceDescription }</p>
                 </div>
                 <div className='details-div'>
-                    <p className='details-field'>Departments: </p>
+                    <p className='details-field'>{ t('departments') }: </p>
                     <p className='details-value'>
                         {
                         departmentOne && <div className='details-div'>
@@ -135,7 +137,7 @@ const SelectGrievance = () => {
 
                 <br /><br />
                 <Button onClick={ handleButtonClick } type="submit" variant="contained" color="primary" fullWidth id="react-button">
-                Submit
+                    { t('submit') }
                 </Button>
 
             </div>

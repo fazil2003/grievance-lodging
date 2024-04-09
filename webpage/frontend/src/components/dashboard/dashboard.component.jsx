@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
+
+    const { t } = useTranslation();
 
     const gridRef = useRef();
     const [rowData, setRowData] = useState();
@@ -100,13 +103,13 @@ const Dashboard = () => {
                 <button
                     className='button-top'
                     onClick={navigateToAddActivity}>
-                    Add Grievance
+                    { t('add_grievance') }
                 </button>
 
                 <button
                     className='button-top'
                     onClick={onBtnExport}>
-                    Export as CSV
+                    { t('export_as_csv') }
                 </button>
 
             </div>

@@ -2,8 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import organizationLogo from '../assets/organization_logo.png';
 import { FaSignOutAlt, FaQuestionCircle } from 'react-icons/fa';
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+
+    const { t } = useTranslation();
+
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("userid");
@@ -33,11 +37,11 @@ const Header = () => {
             <img src={organizationLogo} alt="Organization Logo" />
             <button className="help-button" onClick={handleHelp} >
                 <FaQuestionCircle style={helpIconStyle} />
-                Help
+                { t('help') }
             </button>
             <button className='logout-button' onClick={handleLogout}>
                 <FaSignOutAlt style={logoutIconStyle} />
-                Logout
+                { t('logout') }
             </button>
         </div>
     );

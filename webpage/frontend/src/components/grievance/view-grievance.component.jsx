@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import defaultVariables from '../variables/variables';
-
 import './view-grievance.css';
+import { useTranslation } from "react-i18next";
 
 const ViewGrievance = () => {
+
+    const { t } = useTranslation();
 
     let { id } = useParams();
     const [grievance, setGrievance] = useState([]);
@@ -53,15 +55,15 @@ const ViewGrievance = () => {
             <p className='heading-medium' >{ grievance.grievanceTitle }</p>
             <div className='all-details-div'>
                 <div className='details-div'>
-                    <p className='details-field'>Title: </p>
+                    <p className='details-field'> { t('title') }: </p>
                     <p className='details-value'>{ grievance.grievanceTitle }</p>
                 </div>
                 <div className='details-div'>
-                    <p className='details-field'>Description: </p>
+                    <p className='details-field'> { t('description') }: </p>
                     <p className='details-value'>{ grievance.grievanceDescription }</p>
                 </div>
                 <div className='details-div'>
-                    <p className='details-field'>Departments: </p>
+                    <p className='details-field'> { t('departments') }: </p>
                     <p className='details-value'>
                         {
                         departmentOne && <div className='details-div'>
@@ -84,7 +86,7 @@ const ViewGrievance = () => {
                     </p>
                 </div>
             </div>
-            <p className='heading-small'>Status</p>
+            <p className='heading-small'> { t('status') }</p>
             <center>
                 <div className='activity-buttons'>
                     <p className='heading-medium'>{ grievanceStatus}</p> 

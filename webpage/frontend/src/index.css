@@ -278,6 +278,39 @@ select {
   border-radius: 20px;
 }
 
+.language-selector-login {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  padding: 10px;
+  font-size: 18px;
+  border: 5px solid white;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 2px 3px 5px rgb(180, 180, 180);
+  border-radius: 20px;
+}
+
+.language-btn{
+  background-color: white;
+  color: var(--font-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px;
+  padding: 5px 15px 5px 15px;
+  border: 2px solid gray;
+  border-radius: 30px;
+}
+
+.language-btn-selected{
+  background-color: var(--font-color);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 30px;
+}
+
 .login-form:hover {
   border-left: 5px solid rgb(76, 165, 255);
   border-top: 5px solid rgb(70, 163, 255);

@@ -5,8 +5,12 @@ import avatarProfileIcon from '../assets/avatar_profile_icon.png'
 import passwordIcon from '../assets/password_icon.png'
 import axios from 'axios';
 import defaultVariables from './variables/variables';
+import { useTranslation } from "react-i18next";
+import LanguageSelector from './language-selector';
 
 const Login = (props) =>{
+
+	const { t } = useTranslation();
 
 	const navigate = useNavigate();
 	const [username, setUsername] = useState("");
@@ -48,7 +52,7 @@ const Login = (props) =>{
 
 			<form className='login-form' onSubmit={userLogin} >
 
-				<p className='heading' style={{ textAlign:'left' }}>Login</p>
+				<p className='heading' style={{ textAlign:'left' }}>{ t('login') }</p>
 				<br />
 
 				<div className='login-categories'>
@@ -56,27 +60,27 @@ const Login = (props) =>{
 					style={{ backgroundColor: role == "user" ? 'lightblue': 'white', fontWeight: role == "user" ? 'bold' :'normal',cursor: 'pointer'}}
 					>
 						<img src={ avatarProfileIcon } />
-						<span>User</span>
+						<span>{ t('user') }</span>
 					</div>
 					<div id='category-staff' className='login-category' onClick={() => setRole("admin")}
 					style={{ backgroundColor: role == "admin" ? 'lightblue': 'white', fontWeight: role == "admin" ? 'bold' :'normal', cursor: 'pointer'}}
 					>
 						<img src={ avatarProfileIcon } />
-						<span>Admin</span>
+						<span>{ t('admin') }</span>
 					</div>
 				</div>
 
 				<div className='box'>
 					<img src={ avatarProfileIcon } />
-					<input type="text" placeholder='Username'  />
+					<input type="text" placeholder={ t('username') }  />
 				</div>
 
 				<div className='box'>
 					<img src={ passwordIcon } />
-					<input type="password" placeholder='Password'  />
+					<input type="password" placeholder={ t('password') }  />
 				</div>
 
-				<button className='form-button'>Log in</button>
+				<button className='form-button'>{ t('login') }</button>
 
 				<br />
                 {/* <div className='form-text'> */}
@@ -86,6 +90,11 @@ const Login = (props) =>{
                 {/* </div> */}
 
 			</form>
+
+			<div className='language-selector-login'>
+				<p>Language</p>
+				<LanguageSelector />
+			</div>
 
     	</div>
     )

@@ -10,6 +10,11 @@ from keybert import KeyLLM
 import pandas as pd
 import numpy as np
 
+# for language translation.
+import os
+import json
+from deep_translator import GoogleTranslator
+
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
@@ -57,7 +62,20 @@ def add_grievance():
     grievanceDescription = request_data['grievance_description']
     grievancePerson = request_data['grievance_person']
 
-    keywords = generate_keywords(grievanceDescription)
+    print("Original Description", grievanceDescription)
+
+    # Translate the langauge.
+    translator = GoogleTranslator(source='auto', target='en')
+    # import time
+    # time.sleep(2)
+    translated_description = translator.translate(grievanceDescription)
+
+    print("Translated Description", translated_description)
+
+    # Pass the translated grievance to generate the keywords.
+    keywords = generate_keywords(translated_description)
+
+    print("Generated Keywords", keywords)
 
     import generate_accuracies as ga
     # Get the top 3 values.
@@ -226,6 +244,7 @@ def get_distance(location):
     # calling the Nominatim tool
     loc = Nominatim(user_agent="GetLoc")
     # entering the location name
+    print("\nCurrent Location: ", location)
     getLoc = loc.geocode(location)
     location_1 = (current_location[0], current_location[1])
     location_2 = (getLoc.latitude, getLoc.longitude)

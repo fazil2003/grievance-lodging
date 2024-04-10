@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Box, Typography, Alert, AlertTitle } from '@mui/material';
+import { TextField, Button, Box, Typography, Alert, AlertTitle, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,6 +18,7 @@ const AddGrievanceForm = () => {
     const [grievancePerson, setGrievancePerson] = useState('');
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [showProgressBar, setShowProgressBar] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,16 +27,20 @@ const AddGrievanceForm = () => {
             grievance_description: grievanceDescription,
             grievance_person: localStorage.getItem("userid")
         };
-                  
+                 
+		// Enable the progress bar.
+		setShowProgressBar(true);
+
         axios.post(defaultVariables['backend-url'] + "grievance/add", grievance).then((res) => {
               setTimeout(() => {
-                  setSuccessMessage(null);
-                  navigate("/home/grievance/select/" + res.data.grievance_id);
+					setSuccessMessage(null);
+					setShowProgressBar(false);
+					navigate("/home/grievance/select/" + res.data.grievance_id);
               }, 3000)
             }).catch(err => {
-              setErrorMessage("Some error occured");
-              setTimeout(() => {
-                  setErrorMessage(null);
+				setErrorMessage("Some error occured");
+				setTimeout(() => {
+					setErrorMessage(null);
               }, 3000)
         })
     };
@@ -43,11 +48,12 @@ const AddGrievanceForm = () => {
   return (
     <div>
     <div className='form-div'>
-      <br />
-      <p className="heading-medium" style={{ textAlign: "left" }}>{ t('add_grievance') }</p>
-      <br />
-      <form onSubmit={ handleSubmit } >
-        <TextField
+		<br />
+		<p className="heading-medium" style={{ textAlign: "left" }}>{ t('add_grievance') }</p>
+		<br />
+
+		<form onSubmit={ handleSubmit } >
+			<TextField
 			label={ t('title') }
 			variant="outlined"
 			value={ grievanceTitle }
@@ -55,9 +61,9 @@ const AddGrievanceForm = () => {
 			fullWidth
 			margin="normal"
 			required
-        />
+			/>
 
-        <TextField
+			<TextField
 			label={ t('description') }
 			variant="outlined"
 			value={ grievanceDescription }
@@ -67,13 +73,20 @@ const AddGrievanceForm = () => {
 			rows={4}
 			margin="normal"
 			required
-        />
-    
-        <br /><br />
-        <Button type="submit" variant="contained" color="primary" fullWidth id="react-button">
-          	{ t('submit') }
-        </Button>
-      </form>
+			/>
+		
+			{ showProgressBar && (
+			<div>
+				<br /><br /><CircularProgress />
+			</div>)          
+			}
+			
+			<br /><br />
+			
+			<Button type="submit" variant="contained" color="primary" fullWidth id="react-button">
+				{ t('submit') }
+			</Button>
+		</form>
     </div>
     {successMessage && (
         <div style={{ position: 'fixed', top: '60px', right: '20px', zIndex: 9999 }}>

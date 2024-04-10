@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2024 at 04:09 PM
+-- Generation Time: Apr 10, 2024 at 04:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -91,28 +91,28 @@ INSERT INTO `departments` (`department_id`, `department_name`, `department_categ
 (18, 'Gandhipuram Police', 1, 'Gandhipuram, Coimbatore, Tamilnadu, India', ''),
 (19, 'Bengaluru Transportation', 2, 'Bengaluru, Karnataka, India', ''),
 (20, 'Hyderabad Transportation', 2, 'Hyderabad, Telangana, India', ''),
-(21, 'Tiruvanathapuram Transportation', 2, 'Tiruvanathapuram, Kerala, India', ''),
+(21, 'Thiruvananthapuram Transportation', 2, 'Thiruvananthapuram, Kerala, India', ''),
 (22, 'Bengaluru Education', 3, 'Bengaluru, Karnataka, India', ''),
 (23, 'Hyderabad Education', 3, 'Hyderabad, Telangana, India', ''),
-(24, 'Tiruvanathapuram Education', 3, 'Tiruvanathapuram, Kerala, India', ''),
+(24, 'Thiruvananthapuram Education', 3, 'Thiruvananthapuram, Kerala, India', ''),
 (25, 'Bengaluru Health', 4, 'Bengaluru, Karnataka, India', ''),
 (26, 'Hyderabad Health', 4, 'Hyderabad, Telangana, India', ''),
-(27, 'Tiruvanathapuram Health', 4, 'Tiruvanathapuram, Kerala, India', ''),
+(27, 'Thiruvananthapuram Health', 4, 'Thiruvananthapuram, Kerala, India', ''),
 (28, 'Bengaluru Social Services', 5, 'Bengaluru, Karnataka, India', ''),
 (29, 'Hyderabad Social Services', 5, 'Hyderabad, Telangana, India', ''),
-(30, 'Tiruvanathapuram Social Services', 5, 'Tiruvanathapuram, Kerala, India', ''),
+(30, 'Thiruvananthapuram Social Services', 5, 'Thiruvananthapuram, Kerala, India', ''),
 (31, 'Bengaluru Environmental Protection', 6, 'Bengaluru, Karnataka, India', ''),
 (32, 'Hyderabad Environmental Protection', 6, 'Hyderabad, Telangana, India', ''),
-(33, 'Tiruvanathapuram Environmental Protection', 6, 'Tiruvanathapuram, Kerala, India', ''),
+(33, 'Thiruvananthapuram Environmental Protection', 6, 'Thiruvananthapuram, Kerala, India', ''),
 (34, 'Bengaluru Housing and urban development', 7, 'Bengaluru, Karnataka, India', ''),
 (35, 'Hyderabad Housing and urban development', 7, 'Hyderabad, Telangana, India', ''),
-(36, 'Tiruvanathapuram Housing and urban development', 7, 'Tiruvanathapuram, Kerala, India', ''),
+(36, 'Thiruvananthapuram Housing and urban development', 7, 'Thiruvananthapuram, Kerala, India', ''),
 (37, 'Bengaluru Labor welfare', 8, 'Bengaluru, Karnataka, India', ''),
 (38, 'Hyderabad Labor welfare', 8, 'Hyderabad, Telangana, India', ''),
-(39, 'Tiruvanathapuram Labor welfare', 8, 'Tiruvanathapuram, Kerala, India', ''),
+(39, 'Thiruvananthapuram Labor welfare', 8, 'Thiruvananthapuram, Kerala, India', ''),
 (40, 'Bengaluru Agriculture development', 9, 'Bengaluru, Karnataka, India', ''),
 (41, 'Hyderabad Agriculture development', 9, 'Hyderabad, Telangana, India', ''),
-(42, 'Tiruvanathapuram Agriculture development', 9, 'Tiruvanathapuram, Kerala, India', '');
+(42, 'Thiruvananthapuram Agriculture development', 9, 'Thiruvananthapuram, Kerala, India', '');
 
 -- --------------------------------------------------------
 

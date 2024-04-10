@@ -275,6 +275,11 @@ def get_distance(location):
 @cross_origin(supports_credentials=True)
 def get_grievances(): 
     userID = request.args['userid']
+    if 'lang' in request.args:
+        lang = request.args['lang']
+    else:
+        lang = 'en'
+    print(lang)
     sql = "SELECT * FROM grievance WHERE grievance_person = " + userID + ""
     # print(sql)
     cursor.execute(sql)
@@ -291,10 +296,15 @@ def get_grievances():
         grievanceDate = grievance[6]
         grievanceStatus = grievance[7]
 
+        # Translate the langauge.
+        translator = GoogleTranslator(source='auto', target=lang)
+        translated_title = translator.translate(grievanceTitle)
+        translated_description = translator.translate(grievanceDescription)
+
         obj = {
             'grievanceID': grievanceID,
-            'grievanceTitle': grievanceTitle,
-            'grievanceDescription': grievanceDescription,
+            'grievanceTitle': translated_title,
+            'grievanceDescription': translated_description,
             'grievancePerson': grievancePerson,
             'grievanceDepartment': grievanceDepartment,
             'grievanceDate': grievanceDate,
@@ -475,6 +485,10 @@ def login():
 @cross_origin(supports_credentials=True)
 def admin_get_grievances(): 
     userID = request.args['userid']
+    if 'lang' in request.args:
+        lang = request.args['lang']
+    else:
+        lang = 'en'
     if (userID == '0'):
         sql = "SELECT * FROM grievance"
     else:
@@ -494,10 +508,16 @@ def admin_get_grievances():
         grievanceDate = grievance[6]
         grievanceStatus = grievance[7]
 
+        # Translate the langauge.
+        translator = GoogleTranslator(source='auto', target=lang)
+        translated_title = translator.translate(grievanceTitle)
+        translated_description = translator.translate(grievanceDescription)
+        print(translated_title)
+        print(translated_description)
         obj = {
             'grievanceID': grievanceID,
-            'grievanceTitle': grievanceTitle,
-            'grievanceDescription': grievanceDescription,
+            'grievanceTitle': translated_title,
+            'grievanceDescription': translated_description,
             'grievancePerson': grievancePerson,
             'grievanceDepartment': grievanceDepartment,
             'grievanceDate': grievanceDate,

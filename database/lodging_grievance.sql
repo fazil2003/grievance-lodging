@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2024 at 04:19 PM
+-- Generation Time: Apr 10, 2024 at 05:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,7 +47,7 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, 
 (5, 'Chennai Education', 'chennai.education@gmail.com', 'chennai.education', 4),
 (6, 'Chennai Health', 'chennai.health@gmail.com', 'chennai.health', 5),
 (7, 'Chennai Social Services', 'chennai.socialservices@gmail.com', 'chennai.socialservices', 6),
-(8, 'Chennai Environmental Protection', 'chennai.environmental.protection@gmail.com', 'chennai.environmental.protection', 7),
+(8, 'Chennai Environmental Protection', 'chennai.environmentalprotection@gmail.com', 'chennai.environmentalprotection', 7),
 (9, 'Chennai Housing and urban development', 'chennai.housingandurbandevelopment@gmail.com', 'chennai.housingandurbandevelopment', 8),
 (10, 'Chennai Labor welfare', 'chennai.labor.welfare@gmail.com', 'chennai.labor.welfare', 9),
 (11, 'Chennai Agriculture development', 'chennai.agriculture.development@gmail.com', 'chennai.agriculture.development', 10);
@@ -138,7 +138,9 @@ CREATE TABLE `grievance` (
 INSERT INTO `grievance` (`grievance_id`, `grievance_title`, `grievance_description`, `grievance_person`, `grievance_department`, `grievance_department_text`, `grievance_date`, `grievance_status`) VALUES
 (1, 'violation of rights ', 'violation of rights ', '1', ' 2 5 7 ', '', '2024-03-09', 1),
 (2, 'Sample', 'Sample', '1', ' 2 5 7 ', '', '2024-03-09', 0),
-(3, 'Violation against children', 'Violation against children', '1', ' 3 1 6 ', '', '2024-03-31', 0);
+(3, 'Violation against children', 'Violation against children', '1', ' 3 1 6 ', '', '2024-03-31', 0),
+(4, 'Grievance related to pollution', 'Pollution from nearby factories or industrial sites impacting air and water quality in residential areas. Ineffective waste management leading to littering and environmental degradation. Destruction of natural habitats for development projects without proper consideration for ecological impact.', '1', ' 7 8 ', '', '2024-04-10', 0),
+(5, 'மாசுபாடு தொடர்பான புகார்', 'குடியிருப்புப் பகுதிகளில் காற்று மற்றும் நீரின் தரத்தை பாதிக்கும் அருகிலுள்ள தொழிற்சாலைகள் அல்லது தொழில்துறை தளங்களிலிருந்து வரும் மாசு. திறமையற்ற கழிவு மேலாண்மை, குப்பைகள் மற்றும் சுற்றுச்சூழல் சீரழிவுக்கு வழிவகுக்கிறது. சுற்றுச்சூழல் பாதிப்பை சரியான முறையில் கருத்தில் கொள்ளாமல், வளர்ச்சித் திட்டங்களுக்காக இயற்கை வாழ்விடங்களை அழித்தல்.', '1', ' 7 8 ', '', '2024-04-10', 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +212,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `grievance`
 --
 ALTER TABLE `grievance`
-  MODIFY `grievance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `grievance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `person`

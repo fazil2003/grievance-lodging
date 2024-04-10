@@ -30,6 +30,12 @@ i18n
                 logout: "Logout",
                 departments: "Departments",
                 status: "Status",
+                grievance_id: "Grievance ID",
+                grievance_title: "Grievance Title",
+                grievance_description: "Grievance Description",
+                grievance_department: "Grievance Department",
+                grievance_date: "Grievance Date",
+                grievance_status: "Grievance Status"
             },
         },
         hi: {
@@ -54,6 +60,12 @@ i18n
                 logout: "लॉग आउट",
                 departments: "विभागों",
                 status: "स्थिति",
+                grievance_id: "शिकायत आईडी",
+                grievance_title: "शिकायत शीर्षक",
+                grievance_description: "शिकायत विवरण",
+                grievance_department: "शिकायत विभाग",
+                grievance_date: "शिकायत दिनांक",
+                grievance_status: "शिकायत की स्थिति"
             }
         },
         ta: {
@@ -78,6 +90,12 @@ i18n
                 logout: "வெளியேறு",
                 departments: "துறைகள்",
                 status: "நிலை",
+                grievance_id: "புகார் ஐடி",
+                grievance_title: "புகார் தலைப்பு",
+                grievance_description: "குறை விளக்கம்",
+                grievance_department: "குறைதீர்க்கும் துறை",
+                grievance_date: "புகார் தேதி",
+                grievance_status: "புகார் நிலை"
             }
         }
     }

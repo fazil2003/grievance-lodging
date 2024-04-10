@@ -6,19 +6,22 @@ import { useNavigate } from 'react-router-dom';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import { useTranslation } from "react-i18next";
 
 const AdminDashboard = () => {
+
+    const { t, i18n } = useTranslation();
 
     const gridRef = useRef();
     const [rowData, setRowData] = useState();
 
     const [columnDefs, setColumnDefs] = useState([
-        { field: 'grievanceID', filter: true },
-        { field: 'grievanceTitle', filter: true, cellRenderer: LinkCellRenderer },
-        { field: 'grievanceDescription', filter: true },
-        { field: 'grievanceDepartment', filter: true },
-        { field: 'grievanceDate', filter: true },
-        { field: 'grievanceStatus', filter: true },
+        { field: 'grievanceID', headerName: t('grievance_id'), filter: true },
+        { field: 'grievanceTitle', headerName: t('grievance_title'), filter: true, cellRenderer: LinkCellRenderer },
+        { field: 'grievanceDescription', headerName: t('grievance_description'), filter: true },
+        { field: 'grievanceDepartment', headerName: t('grievance_department'), filter: true },
+        { field: 'grievanceDate', headerName: t('grievance_date'), filter: true },
+        { field: 'grievanceStatus', headerName: t('grievance_status'), filter: true },
     ]);
 
     function LinkCellRenderer(props) {
@@ -68,7 +71,7 @@ const AdminDashboard = () => {
     }, []);
 
     const onGridReady = useCallback((params) => {
-        axios.get(defaultVariables['backend-url'] + "admin/grievance/get?userid=" + localStorage.getItem("admindept"),
+        axios.get(defaultVariables['backend-url'] + "admin/grievance/get?userid=" + localStorage.getItem("admindept") + "&lang=" + i18n.language,
             )
             .then((res) => {
                 setRowData(res.data);
@@ -100,7 +103,7 @@ const AdminDashboard = () => {
                 <button
                     className='button-top'
                     onClick={onBtnExport}>
-                    Export as CSV
+                    { t('export_as_csv') }
                 </button>
 
             </div>

@@ -10,18 +10,18 @@ import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const gridRef = useRef();
     const [rowData, setRowData] = useState();
 
     const [columnDefs, setColumnDefs] = useState([
-        { field: 'grievanceID', filter: true },
-        { field: 'grievanceTitle', filter: true, cellRenderer: LinkCellRenderer },
-        { field: 'grievanceDescription', filter: true },
-        { field: 'grievanceDepartment', filter: true },
-        { field: 'grievanceDate', filter: true },
-        { field: 'grievanceStatus', filter: true },
+        { field: 'grievanceID', headerName: t('grievance_id'), filter: true },
+        { field: 'grievanceTitle', headerName: t('grievance_title'), filter: true, cellRenderer: LinkCellRenderer },
+        { field: 'grievanceDescription', headerName: t('grievance_description'), filter: true },
+        { field: 'grievanceDepartment', headerName: t('grievance_department'), filter: true },
+        { field: 'grievanceDate', headerName: t('grievance_date'), filter: true },
+        { field: 'grievanceStatus', headerName: t('grievance_status'), filter: true },
     ]);
 
     function LinkCellRenderer(props) {
@@ -71,7 +71,7 @@ const Dashboard = () => {
     }, []);
 
     const onGridReady = useCallback((params) => {
-        axios.get(defaultVariables['backend-url'] + "grievance/get?userid=" + localStorage.getItem("userid"),
+        axios.get(defaultVariables['backend-url'] + "grievance/get?userid=" + localStorage.getItem("userid") + "&lang=" + i18n.language,
             )
             .then((res) => {
                 setRowData(res.data);

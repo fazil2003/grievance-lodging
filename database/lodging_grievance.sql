@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2024 at 03:33 PM
+-- Generation Time: Apr 10, 2024 at 04:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,16 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_department`) VALUES
 (1, 'admin', 'admin@gmail.com', 'admin', 0),
-(2, 'Karnataka Police', 'karnataka.police@gmail.com', 'karnataka.police', 2);
+(2, 'Karnataka Police', 'karnataka.police@gmail.com', 'karnataka.police', 2),
+(3, 'Chennai Police', 'chennai.police@gmail.com', 'chennai.police', 1),
+(4, 'Chennai Transportation', 'chennai.transportation@gmail.com', 'chennai.transportation', 3),
+(5, 'Chennai Education', 'chennai.education@gmail.com', 'chennai.education', 4),
+(6, 'Chennai Health', 'chennai.health@gmail.com', 'chennai.health', 5),
+(7, 'Chennai Social Services', 'chennai.socialservices@gmail.com', 'chennai.socialservices', 6),
+(8, 'Chennai Environmental Protection', 'chennai.environmental.protection@gmail.com', 'chennai.environmental.protection', 7),
+(9, 'Chennai Housing and urban development', 'chennai.housingandurbandevelopment@gmail.com', 'chennai.housingandurbandevelopment', 8),
+(10, 'Chennai Labor welfare', 'chennai.labor.welfare@gmail.com', 'chennai.labor.welfare', 9),
+(11, 'Chennai Agriculture development', 'chennai.agriculture.development@gmail.com', 'chennai.agriculture.development', 10);
 
 -- --------------------------------------------------------
 
@@ -68,10 +77,42 @@ INSERT INTO `departments` (`department_id`, `department_name`, `department_categ
 (4, 'Chennai Education', 3, 'Chennai, Tamilnadu, India', ''),
 (5, 'Chennai Health', 4, 'Chennai, Tamilnadu, India', ''),
 (6, 'Chennai Social Services', 5, 'Chennai, Tamilnadu, India', ''),
-(7, 'Environmental protection', 6, 'Chennai, Tamilnadu, India', ''),
+(7, 'Chennai Environmental protection', 6, 'Chennai, Tamilnadu, India', ''),
 (8, 'Chennai Housing and urban development', 7, 'Chennai, Tamilnadu, India', ''),
 (9, 'Chennai Labor welfare', 8, 'Chennai, Tamilnadu, India', ''),
-(10, 'Chennai Agriculture development', 9, 'Chennai, Tamilnadu, India', '');
+(10, 'Chennai Agriculture development', 9, 'Chennai, Tamilnadu, India', ''),
+(11, 'Coimbatore Police', 1, 'Coimbatore, Tamilnadu, India', ''),
+(12, 'Salem Police', 1, 'Salem, Tamilnadu, India', ''),
+(13, 'Tiruppur Police', 1, 'Tiruppur, Tamilnadu, India', ''),
+(14, 'Erode Police', 1, 'Erode, Tamilnadu, India', ''),
+(15, 'Palakkad Police', 1, 'Palakkad, Kerala, India', ''),
+(16, 'Karur Police', 1, 'Karur, Tamilnadu, India', ''),
+(17, 'Peelamedu Police', 1, 'Peelamedu, Coimbatore, Tamilnadu, India', ''),
+(18, 'Gandhipuram Police', 1, 'Gandhipuram, Coimbatore, Tamilnadu, India', ''),
+(19, 'Bengaluru Transportation', 2, 'Bengaluru, Karnataka, India', ''),
+(20, 'Hyderabad Transportation', 2, 'Hyderabad, Telangana, India', ''),
+(21, 'Tiruvanathapuram Transportation', 2, 'Tiruvanathapuram, Kerala, India', ''),
+(22, 'Bengaluru Education', 3, 'Bengaluru, Karnataka, India', ''),
+(23, 'Hyderabad Education', 3, 'Hyderabad, Telangana, India', ''),
+(24, 'Tiruvanathapuram Education', 3, 'Tiruvanathapuram, Kerala, India', ''),
+(25, 'Bengaluru Health', 4, 'Bengaluru, Karnataka, India', ''),
+(26, 'Hyderabad Health', 4, 'Hyderabad, Telangana, India', ''),
+(27, 'Tiruvanathapuram Health', 4, 'Tiruvanathapuram, Kerala, India', ''),
+(28, 'Bengaluru Social Services', 5, 'Bengaluru, Karnataka, India', ''),
+(29, 'Hyderabad Social Services', 5, 'Hyderabad, Telangana, India', ''),
+(30, 'Tiruvanathapuram Social Services', 5, 'Tiruvanathapuram, Kerala, India', ''),
+(31, 'Bengaluru Environmental Protection', 6, 'Bengaluru, Karnataka, India', ''),
+(32, 'Hyderabad Environmental Protection', 6, 'Hyderabad, Telangana, India', ''),
+(33, 'Tiruvanathapuram Environmental Protection', 6, 'Tiruvanathapuram, Kerala, India', ''),
+(34, 'Bengaluru Housing and urban development', 7, 'Bengaluru, Karnataka, India', ''),
+(35, 'Hyderabad Housing and urban development', 7, 'Hyderabad, Telangana, India', ''),
+(36, 'Tiruvanathapuram Housing and urban development', 7, 'Tiruvanathapuram, Kerala, India', ''),
+(37, 'Bengaluru Labor welfare', 8, 'Bengaluru, Karnataka, India', ''),
+(38, 'Hyderabad Labor welfare', 8, 'Hyderabad, Telangana, India', ''),
+(39, 'Tiruvanathapuram Labor welfare', 8, 'Tiruvanathapuram, Kerala, India', ''),
+(40, 'Bengaluru Agriculture development', 9, 'Bengaluru, Karnataka, India', ''),
+(41, 'Hyderabad Agriculture development', 9, 'Hyderabad, Telangana, India', ''),
+(42, 'Tiruvanathapuram Agriculture development', 9, 'Tiruvanathapuram, Kerala, India', '');
 
 -- --------------------------------------------------------
 
@@ -157,13 +198,13 @@ ALTER TABLE `person`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `grievance`
